@@ -1,0 +1,9 @@
+#+TITLE: Useful racket
+#+AUTHOR: Md Arif Shaikh
+* About
+some useful racket scripts
+* Search arxiv papers
+  This is [[./arxiv.rkt][script]] could be modified to basically scrape webpage. I use
+  it to search paper from arxiv with keyword ~gravitational wave~ from
+  some specific range of dates. The range of dates could be given as
+  command line arguments.
