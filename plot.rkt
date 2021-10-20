@@ -1,4 +1,5 @@
 #lang racket
+(include "plot-settings.rkt")
 (require plot)
 (require pict)
 (require racket/draw)
@@ -23,16 +24,7 @@
               #:width 300
               #:height 200)))
 
-(define (save-pict-as-pdf pict inset adjust-width adjust-height file-name)
-  (let* ((w (+ inset inset (- (pict-width pict) adjust-width)))
-         (h (+ inset inset (- (pict-height pict) adjust-height)))
-         (dc (new pdf-dc% [width w] [height h]
-                  [interactive #f]
-                  [output file-name])))
-    (send dc start-doc "export to file")
-    (send dc start-page)
-    (draw-pict pict dc inset inset)
-    (send dc end-page)
-    (send dc end-doc)))
-
-(save-pict-as-pdf the-plot 2 120 50 "the-plot.pdf")
+(save-pict-as-pdf the-plot
+                  #:adjust-width 120
+                  #:adjust-height 50
+                  #:file-name "the-plot.pdf")
