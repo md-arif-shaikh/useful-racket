@@ -59,13 +59,13 @@
                      (points (map vector (list ecc) (list q)) #:color (get-color mm min-mm max-mm color-list) #:sym 'fullcircle1)))))
 
 (require pict)
+(require flomat)
 
 (define (get-color-picts list-of-colors)
   (for/list ([c list-of-colors])
     (filled-rectangle 30 15 #:draw-border? #f #:color c)))
-
 (define (get-label-picts min-val max-val color-count)
-  (for/list ([l (in-list (get-levels min-val max-val color-count))])
+  (for/list ([l (in-list (flomat->lists (linspace min-val max-val color-count)))])
     (cc-superimpose
      (ghost (rectangle 30 15))
      (text (real->decimal-string l 3) null (plot-font-size)))))
